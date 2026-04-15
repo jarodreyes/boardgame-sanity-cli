@@ -12,7 +12,7 @@ import {XMLParser} from 'fast-xml-parser'
  *   node scripts/fetch-geeklist-ids.mjs [geeklistId] [outputPath] [maxIds]
  *
  * Default geeklistId: 234959 (425 ranked board games; order is the list author’s, not BGG’s
- * global rank — swap the ID for any geeklist you prefer, or use a CSV; see tutorial.)
+ * global rank — swap the ID for any geeklist you prefer, or use a CSV; see README.)
  *
  * BGG often queues geeklist exports; this script retries until XML is ready.
  */

@@ -22,6 +22,9 @@
 .DS_Store
 *.pem
 
+# Author / learner materials — not tracked on GitHub
+/tutorial
+
 # Typescript
 *.tsbuildinfo
 

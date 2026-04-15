@@ -1,6 +1,6 @@
 {
   "source": "geeklist:234959",
-  "note": "Order follows that geeklist (author’s ranking), not BGG’s global rank. Regenerate with npm run rank-ids — see tutorial. For strict BGG rank order, replace ids using the official bg_ranks CSV from boardgamegeek.com/data_dumps/bg_ranks (browser, logged in).",
+  "note": "Order follows that geeklist (author’s ranking), not BGG’s global rank. Regenerate with npm run rank-ids (see scripts/fetch-geeklist-ids.mjs). For strict BGG rank order, replace ids using the official bg_ranks CSV from boardgamegeek.com/data_dumps/bg_ranks (browser, logged in).",
   "fetchedAt": "2026-04-13T17:50:57.077Z",
   "ids": [
     "120677",

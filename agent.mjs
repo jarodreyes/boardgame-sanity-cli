@@ -1,5 +1,5 @@
 // Requires: SANITY_CONTEXT_MCP_URL, SANITY_API_READ_TOKEN (Viewer), OPENAI_API_KEY
-// Agent Context MCP only works after `npx sanity deploy` (hosted Studio v5.1+); see tutorial Step 5.
+// Agent Context MCP only works after `npx sanity deploy` (hosted Studio v5.1+); see README and https://www.sanity.io/docs/ai/agent-context
 // Set NO_COLOR=1 or pipe stdout to disable ANSI in the answer body.
 import 'dotenv/config'
 import {generateText, stepCountIs} from 'ai'
@@ -183,10 +183,10 @@ function printDeployHintIfMcpRejected(err) {
       ansiStderr
         ? chalk.yellow(
             '\nAgent Context MCP requires a deployed Studio (v5.1+). Run: npx sanity deploy\n' +
-              'Local npm run dev is not enough. See the tutorial Step 5.\n',
+              'Local npm run dev is not enough. See README and https://www.sanity.io/docs/ai/agent-context\n',
           )
         : '\nAgent Context MCP requires a deployed Studio (v5.1+). Run: npx sanity deploy\n' +
-            'Local npm run dev is not enough. See the tutorial Step 5.\n',
+            'Local npm run dev is not enough. See README and https://www.sanity.io/docs/ai/agent-context\n',
     )
   }
 }
