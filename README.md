@@ -38,6 +38,8 @@ npm install
 
 If you **cloned** this repo, set **`projectId`** and **`dataset`** in **`sanity.config.ts`** and **`sanity.cli.ts`** to your own project from [sanity.io/manage](https://www.sanity.io/manage) (the tutorial’s `npm create sanity` path bakes these in for you).
 
+`ingest.mjs`, `agent.mjs`, and `scripts/fetch-geeklist-ids.mjs` load **`.env` from the current working directory** via `dotenv` — run them from the **repo root** (no `node --env-file=.env` needed).
+
 ```bash
 npx sanity schema deploy
 npm run deploy
@@ -53,6 +55,8 @@ npm run ingest
 npm run agent -- "How many board games are in the database?"
 ```
 
+In a real terminal, the agent prints a framed **Question**, cyan **›** progress on stderr, and ANSI-styled Markdown on stdout (**bold**, `` `code` ``, links). Pipe stdout or set **`NO_COLOR=1`** for plain answer text (good for scripts and redirects).
+
 For **step-by-step** setup (clean template, schema, ingest, Agent Context fields, troubleshooting), use the **[tutorial](tutorial/bgg-agent-context-tutorial.md)** — it is the source of truth so this README stays short.
 
 ---
@@ -66,7 +70,7 @@ For **step-by-step** setup (clean template, schema, ingest, Agent Context fields
 | `npm run ingest` | Default BGG import (hot + featured) |
 | `npm run ingest:top250` | Import up to 250 games using `data/bgg-ranked-ids.json` |
 | `npm run rank-ids` | Regenerate ranked IDs from a BGG geeklist (see script header) |
-| `npm run agent -- "…"` | Run the CLI agent (quote your question) |
+| `npm run agent -- "…"` | Run the CLI agent (quote your question); `NO_COLOR=1` or a pipe disables ANSI in the answer |
 
 ---
 
@@ -92,6 +96,18 @@ For **step-by-step** setup (clean template, schema, ingest, Agent Context fields
 - **Rotate tokens** if they were ever pasted into a public issue or chat.
 
 Each learner still creates **their own** Sanity project and tokens; the tutorial explains that.
+
+---
+
+## Terminal look (Cursor / VS Code)
+
+This repo includes **`.vscode/settings.json`**: larger monospace font, spacing, and **Catppuccin Mocha–style** ANSI colors in the **integrated** terminal so command output is easier to read on video.
+
+1. Install **[JetBrains Mono](https://www.jetbrains.com/lp/mono/)** (or **Fira Code**) on your system so the font resolves.
+2. Open the **bgg-agent** folder as the workspace root so VS Code/Cursor picks up `.vscode/settings.json`.
+3. Optional: install the **Dracula** or **Material Theme** extension when prompted (see `.vscode/extensions.json`).
+
+For **iTerm2** recording, still follow [tutorial/bgg-agent-context-recording-instructions.md](tutorial/bgg-agent-context-recording-instructions.md) (Dracula / One Dark, 16pt+).
 
 ---
 

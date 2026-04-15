@@ -1,19 +1,21 @@
 #!/usr/bin/env node
+import 'dotenv/config'
+import {mkdir, writeFile} from 'node:fs/promises'
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
+import {XMLParser} from 'fast-xml-parser'
+
 /**
  * Fetch board game IDs from a BGG geeklist (XML API v1) and write data/bgg-ranked-ids.json
  *
  * Usage:
- *   node --env-file=.env scripts/fetch-geeklist-ids.mjs [geeklistId] [outputPath] [maxIds]
+ *   node scripts/fetch-geeklist-ids.mjs [geeklistId] [outputPath] [maxIds]
  *
  * Default geeklistId: 234959 (425 ranked board games; order is the list author’s, not BGG’s
  * global rank — swap the ID for any geeklist you prefer, or use a CSV; see tutorial.)
  *
  * BGG often queues geeklist exports; this script retries until XML is ready.
  */
-import {mkdir, writeFile} from 'node:fs/promises'
-import path from 'node:path'
-import {fileURLToPath} from 'node:url'
-import {XMLParser} from 'fast-xml-parser'
 
 const geeklistId = process.argv[2] ?? '234959'
 const defaultOut = path.join(
