@@ -39,11 +39,15 @@ If you **cloned** this repo, set **`projectId`** and **`dataset`** in **`sanity.
 `ingest.mjs`, `agent.mjs`, and `scripts/fetch-geeklist-ids.mjs` load **`.env` from the current working directory** via `dotenv` — run them from the **repo root** (no `node --env-file=.env` needed).
 
 ```bash
-npx sanity schema deploy
+npx sanity schemas deploy --workspace default
 npm run deploy
 ```
 
+Sanity CLI v6 uses **`sanity schemas deploy`** (plural). You can also run **`npm run schema:deploy`**.
+
 `npm run deploy` hosts Studio; **Agent Context’s MCP URL only works once Studio is deployed** (v5.1+). Then in Studio: install plugins if needed, create the **Agent Context** document, copy the **MCP URL** into `.env`.
+
+After **`@sanity/agent-context`** is installed, deploy the schema once so plugin types (including Agent Insights) exist in the dataset, then open Studio locally (`npm run dev`) or hosted — look for **Agent Insights** in the Studio UI (plugin navigation).
 
 ```bash
 npm run ingest
@@ -65,9 +69,10 @@ For Studio plugin install, **Agent Context** documents, **GROQ filters**, MCP UR
 |--------|---------|
 | `npm run dev` | Sanity Studio (local) |
 | `npm run deploy` | Host Studio (required for Agent Context MCP) |
-| `npm run ingest` | Default BGG import (hot + featured) |
+| `npm run ingest` | Default BGG import — BGG **hot** list plus **FEATURED_IDS** in `ingest.mjs` (edit that array to pin demos, then re-run ingest) |
 | `npm run ingest:top250` | Import up to 250 games using `data/bgg-ranked-ids.json` |
 | `npm run rank-ids` | Regenerate ranked IDs from a BGG geeklist (see script header) |
+| `npm run schema:deploy` | Push merged schema (your types + `@sanity/agent-context`) to the dataset |
 | `npm run agent -- "…"` | Run the CLI agent (quote your question); `NO_COLOR=1` or a pipe disables ANSI in the answer |
 
 ---
@@ -79,6 +84,7 @@ For Studio plugin install, **Agent Context** documents, **GROQ filters**, MCP UR
 | `schemaTypes/` | `boardGame` schema |
 | `ingest.mjs` | BGG → Content Lake |
 | `agent.mjs` | MCP + `generateText` |
+| `agent-insights-telemetry.mjs` | Agent Insights telemetry for Node (avoids importing Studio from `@sanity/agent-context/ai-sdk`) |
 | `scripts/fetch-geeklist-ids.mjs` | Optional ranked ID list for larger ingests |
 | `data/bgg-ranked-ids.json` | Default list for `ingest:top250` (replaceable) |
 

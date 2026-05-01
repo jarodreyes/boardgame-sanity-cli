@@ -127,6 +127,7 @@ async function commitInChunks(docs) {
 // Stable IDs for BGG's all-time top games — ensures rich demo data
 // regardless of what's trending on the hot list this week
 const FEATURED_IDS = [
+  456440, // Cozy Stickerville — narrative + city building + co-op demo target
   174430, // Gloomhaven
   161936, // Pandemic Legacy: Season 1
   233078, // Twilight Imperium: 4th Edition
